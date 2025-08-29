@@ -6,7 +6,7 @@ namespace TP_3_Ejercicio_4
         {
             InitializeComponent();
         }
-        public void Agregrar()
+        public void Agregrar( string nombre, string pes)
         {
 
         }
