@@ -5,11 +5,11 @@ VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP_3_Ejercicio_4", "TP_3_Ejercicio_4.csproj", "{95E6ED8D-F2E2-4457-848F-7F98B117156A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BE", "..\BE\BE.csproj", "{06C096CE-AE09-321A-1FF3-1F3C28B66B20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BE", "BE\BE.csproj", "{06C096CE-AE09-321A-1FF3-1F3C28B66B20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "..\BLL\BLL.csproj", "{5DC26196-D04A-9119-EA64-07214DDE2CFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{5DC26196-D04A-9119-EA64-07214DDE2CFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "..\DAL\DAL.csproj", "{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +38,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0365DC5D-0FB5-4CEF-AE96-85BB0AC2842F}
+		        SolutionGuid = {0365DC5D-0FB5-4CEF-AE96-85BB0AC2842F}
+		SolutionGuid = {6771310D-0E89-4741-9DA0-394DF079174D}
 	EndGlobalSection
 EndGlobal
