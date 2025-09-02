@@ -25,7 +25,6 @@ namespace DAL
         {
             transaction = conexion.BeginTransaction();
         }
-
         public void Cancel_TX()
         {
             transaction.Rollback();
@@ -34,7 +33,6 @@ namespace DAL
         {
             transaction.Commit();
         }
-
         public int Write( string Query , SqlParameter[] sp)
         {
             int ar;
@@ -44,19 +42,18 @@ namespace DAL
                 Start_TX();
                 SqlCommand cmd = new SqlCommand
                 {
-
-                    CommandText = Query,
-                    CommandType = System.Data.CommandType.StoredProcedure,
-                    Connection = conexion
+                    Connection = conexion,
+                    CommandText = Query ,
+                    CommandType = CommandType.StoredProcedure
                 };
-                if ( sp != null )
-                    cmd.Parameters.AddRange( sp );
-                ar = cmd.ExecuteNonQuery();
+                if (sp != null)
+                    cmd.Parameters.AddRange(sp);
+                ar = cmd.ExecuteNonQuery(); 
             }
             catch
             {
                 Cancel_TX();
-                ar = 1;
+                ar = -1;
             }
             finally
             {
@@ -89,6 +86,7 @@ namespace DAL
             }
             return dataTable;   
         }
+
         public DataTable Read ( string Query , SqlParameter[] sp, string archive )
         {
             DataTable dataTable = new DataTable();

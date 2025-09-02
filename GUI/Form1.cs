@@ -6,5 +6,10 @@ namespace GUI
         {
             InitializeComponent();
         }
+
+        private void BTN_AGREGAR_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
