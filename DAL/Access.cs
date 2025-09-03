@@ -47,7 +47,7 @@ namespace DAL
                         cmd.Parameters.AddRange(sp);
                     Start_TX();
                     resultado = cmd.ExecuteNonQuery();
-                    Close();
+                    Commit_TX();
                 }
                 return resultado ;
             }
