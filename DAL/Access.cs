@@ -29,11 +29,87 @@ namespace DAL
         {
             transaction.Rollback();
         }
-        public void Close_TX()
+        public void Commit_TX()
         {
             transaction.Commit();
         }
-        public int Write( string Query , SqlParameter[] sp)
+        
+        public int Escribir ( string Query , SqlParameter[] sp)
+        {
+            int resultado = 0;
+            try
+            {
+                Open();
+                using ( SqlCommand cmd = new SqlCommand( Query , conexion ))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    if (sp != null)
+                        cmd.Parameters.AddRange(sp);
+                    Start_TX();
+                    resultado = cmd.ExecuteNonQuery();
+                    Close();
+                }
+                return resultado ;
+            }
+            catch
+            {
+                Cancel_TX();
+                return -1;
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+        public DataTable Leer ( string Query , SqlParameter[] sp , string archive = null)
+        {
+            DataTable tabla_datos = new DataTable();    
+            try
+            {
+                Open();
+                using (SqlCommand cmd = new SqlCommand(Query, conexion))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    if (sp != null)
+                        cmd.Parameters.AddRange(sp);
+                    using ( SqlDataAdapter adapter = new(cmd) )
+                    {
+                        adapter.Fill(tabla_datos);
+                    }
+                }
+                return tabla_datos;
+            }
+            catch( Exception ex ) when ( archive != null )
+            {
+                string path = $"{archive}.XML";
+                if ( File.Exists(path))
+                {
+                    try
+                    {
+                        DataSet DS = new DataSet();
+                        DS.ReadXml(path);
+                        if (DS != null)
+                            throw new ArgumentException($"No se pudo leer{path}");
+                        if (DS.Tables.Count > 0)
+                            tabla_datos = DS.Tables[0];  
+                        
+                        return tabla_datos;
+                    }
+                    catch( Exception XML )
+                    {
+                        throw new Exception($" Error al leer {path} : {archive} , {ex.Message}");
+                    }
+                }
+            }
+            finally
+            {
+                Close();
+            }
+            return tabla_datos;
+        }
+
+        /*public int Write( string Query , SqlParameter[] sp)
         {
             int ar;
             try
@@ -60,9 +136,9 @@ namespace DAL
                 Close();
             }
             return ar;
-        }
+        }*/
 
-        public DataTable Read( string Query , SqlParameter[] sp)
+        /*public DataTable Read( string Query , SqlParameter[] sp)
         {
             DataTable dataTable = new DataTable();
             try
@@ -85,9 +161,9 @@ namespace DAL
                 Close();
             }
             return dataTable;   
-        }
+        }*/
 
-        public DataTable Read ( string Query , SqlParameter[] sp, string archive )
+        /*public DataTable Read ( string Query , SqlParameter[] sp, string archive )
         {
             DataTable dataTable = new DataTable();
             try
@@ -129,6 +205,6 @@ namespace DAL
                 Close();
             }
             return dataTable;
-        }
+        }*/
     }
 }
