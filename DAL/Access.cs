@@ -36,30 +36,31 @@ namespace DAL
         
         public int Escribir ( string Query , SqlParameter[] sp)
         {
-            int resultado = 0;
+            int ar = 0;
             try
             {
                 Open();
-                using ( SqlCommand cmd = new SqlCommand( Query , conexion ))
+                using ( SqlCommand cmd = new(Query ,conexion ) )
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
                     if (sp != null)
                         cmd.Parameters.AddRange(sp);
                     Start_TX();
-                    resultado = cmd.ExecuteNonQuery();
+                    ar = cmd.ExecuteNonQuery();
                     Commit_TX();
                 }
-                return resultado ;
+                return ar;
             }
             catch
             {
                 Cancel_TX();
-                return -1;
+                ar = -1;
             }
             finally
             {
                 Close();
             }
+            return ar;
         }
 
         public DataTable Leer ( string Query , SqlParameter[] sp , string archive = null)
