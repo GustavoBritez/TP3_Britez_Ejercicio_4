@@ -23,12 +23,35 @@ namespace BLL
             try 
             {
                 
+                if (Usuar is null)
+                    throw new ArgumentException("El usuario esta vacio");
+
+                DAL_INTERACTION.Register(Usuar);
+
+
             }
             catch ( Exception ex )
             {
                 throw new ArgumentException(ex.Message);
             }
         }
+
+        public List<UsuarioBE> Obtener_Usuarios()
+        {
+            try
+            {
+                List<UsuarioBE> Obtener_dal = new();
+
+                Obtener_dal = DAL_INTERACTION.Obtener_Usuarios();
+
+                return Obtener_dal;
+            }
+            catch( Exception ex )
+            {
+                throw new ArgumentException("Error al obtener usuarios");
+            }
+        }
+
         public void Login( string usuario, string contrasenia )
         {
             try
