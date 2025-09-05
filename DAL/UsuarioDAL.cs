@@ -24,7 +24,7 @@ namespace DAL
                     new SqlParameter("@CONTRASENIA",System.Data.SqlDbType.VarChar ){Value = agregar.Contrasenia}
                 };
 
-                int resultado = mapper.Write("Insertar_Usuario", param);
+                int resultado = mapper.Escribir("Insertar_Usuario", param);
 
                 return resultado > 0;
             }
@@ -44,7 +44,7 @@ namespace DAL
                     new SqlParameter("@CONTRASENIA",System.Data.SqlDbType.NVarChar) {Value = contrasenia}
                 };
 
-                DataTable resultado = mapper.Read("Obtener_Usuario", param);
+                DataTable resultado = mapper.Leer("Obtener_Usuario", param);
 
                 if (resultado.Rows.Count == 0)
                     return false;

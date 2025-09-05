@@ -13,8 +13,32 @@ namespace DAL
     {
 
         /// La idea de esta clase es declararla dentro de la capa DAL para acceder a datos de manera flexible
-        
-        public static SqlParameter[] Param<T> ( T entidad)
+        public static SqlParameter[] Param<T> (T entidad )
+        {
+            try
+            {
+
+                if (entidad is null)
+                    throw new ArgumentNullException(" Entidad no puede ser ");
+
+                List<SqlParameter> list = new List<SqlParameter>();
+                var properties = typeof(T).GetProperties();
+                foreach (var property in properties)
+                {
+                    var nombre_propiedad = "@"+property.Name.ToUpper();
+                    var values = property.GetValue(entidad) ?? DBNull.Value;
+
+                    list.AddRange(new SqlParameter( nombre_propiedad,values));
+                }
+                return list.ToArray();
+
+            }
+            catch( Exception ex )
+            {
+                throw new ArgumentException($"{ex.Message}");
+            }
+        }
+       /*public static SqlParameter[] Param<T> ( T entidad)
         {
             try
             {
@@ -39,7 +63,7 @@ namespace DAL
             {
                 throw new ArgumentException(ex.Message);
             }
-        }
+        }*/
 
 
     }
