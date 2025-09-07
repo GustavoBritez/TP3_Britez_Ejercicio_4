@@ -19,7 +19,7 @@ namespace DAL
             {
 
                 if (entidad is null)
-                    throw new ArgumentNullException(" Entidad no puede ser ");
+                    throw new ArgumentNullException(" Entidad no puede ser null");
 
                 List<SqlParameter> list = new List<SqlParameter>();
                 var properties = typeof(T).GetProperties();
