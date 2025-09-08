@@ -48,7 +48,7 @@ namespace BLL
             }
             catch( Exception ex )
             {
-                throw new ArgumentException("Error al obtener usuarios");
+                throw new ArgumentException("Error al obtener usuarios en BLL");
             }
         }
 

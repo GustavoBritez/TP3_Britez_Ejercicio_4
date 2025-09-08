@@ -12,7 +12,7 @@ namespace DAL
 {
     public class UsuarioDAL
     {
-        public Access mapper;
+        public Access mapper = new();
 
         public bool Register( UsuarioBE agregar )
         {
@@ -25,7 +25,7 @@ namespace DAL
                     new SqlParameter("@CONTRASENIA",System.Data.SqlDbType.VarChar ){Value = agregar.Contrasenia}
                 };
                 mapper = new();
-                int resultado = mapper.Escribir("INSERTAR_USUARIO", param);
+                int resultado = mapper.Escribir("ALTA_USUARIO", param);
 
                 return resultado > 0;
             }
@@ -73,11 +73,12 @@ namespace DAL
                 {
                     UsuarioBE usuario = new UsuarioBE
                     {
-                        Id_Usuario = linea["ID_USUARIO"] != DBNull.Value ? Convert.ToInt32(linea["ID_USUARIO"]) : 0,
+                        Id_Usuario = linea["ID_USUARIOS"] != DBNull.Value ? Convert.ToInt32(linea["ID_USUARIOS"]) : 0,
                         Nombre = linea["NOMBRE"] != DBNull.Value ? Convert.ToString(linea["NOMBRE"]) : string.Empty,
                         Mail = linea["MAIL"] != DBNull.Value ? Convert.ToString(linea["MAIL"]) : string.Empty,
                         Contrasenia = linea["CONTRASENIA"] != DBNull.Value ? Convert.ToString(linea["CONTRASENIA"]) : string.Empty
                     };
+                    list_usuario.Add(usuario);
                 }
                 
                 return list_usuario;

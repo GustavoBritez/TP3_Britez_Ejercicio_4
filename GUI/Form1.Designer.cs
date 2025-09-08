@@ -118,6 +118,7 @@
             Controls.Add(Grilla_Usuario);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)Grilla_Usuario).EndInit();
             ResumeLayout(false);
             PerformLayout();

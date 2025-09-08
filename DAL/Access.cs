@@ -10,7 +10,7 @@ namespace DAL
 {
     public class Access
     {
-        private SqlConnection conexion = new SqlConnection();
+        private SqlConnection conexion = new SqlConnection("Data Source=.;Initial Catalog=LOPO;Integrated Security=True;Trust Server Certificate=True");
         private SqlTransaction transaction;
 
         public void Open()
@@ -46,6 +46,7 @@ namespace DAL
                     if (sp != null)
                         cmd.Parameters.AddRange(sp);
                     Start_TX();
+                    cmd.Transaction = transaction;
                     ar = cmd.ExecuteNonQuery();
                     Commit_TX();
                 }

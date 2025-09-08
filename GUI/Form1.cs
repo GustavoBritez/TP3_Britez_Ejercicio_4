@@ -29,10 +29,18 @@ namespace GUI
 
 
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            UsuarioBLL logica_Usuario = new UsuarioBLL();
+
+            Grilla_Usuario.DataSource = null;
+            Grilla_Usuario.DataSource = logica_Usuario.Obtener_Usuarios();
         }
     }
 }
