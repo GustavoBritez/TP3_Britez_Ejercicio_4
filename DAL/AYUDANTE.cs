@@ -64,7 +64,5 @@ namespace DAL
                 throw new ArgumentException(ex.Message);
             }
         }*/
-
-
     }
 }

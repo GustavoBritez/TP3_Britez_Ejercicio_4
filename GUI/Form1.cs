@@ -20,6 +20,14 @@ namespace GUI
                 usuario.Mail = Interaction.InputBox(" Ingrese un mail ");
                 usuario.Contrasenia = Interaction.InputBox("Ingrese una contrasenia");
 
+                if (string.IsNullOrEmpty(usuario.Nombre) || string.IsNullOrEmpty(usuario.Mail) || string.IsNullOrEmpty(usuario.Contrasenia))
+                {
+                    MessageBox.Show("Complete los campos correctamente porfavor ");
+                    return;
+                    /// throw new ArgumentNullException("Complete los campos correctamente porfavor ");
+                }
+
+
                 UsuarioBLL logica_Usuario = new UsuarioBLL();
 
                 logica_Usuario.Register(usuario);
