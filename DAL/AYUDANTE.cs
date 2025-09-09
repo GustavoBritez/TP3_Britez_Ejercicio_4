@@ -17,7 +17,6 @@ namespace DAL
         {
             try
             {
-
                 if (entidad is null)
                     throw new ArgumentNullException(" Entidad no puede ser null");
 

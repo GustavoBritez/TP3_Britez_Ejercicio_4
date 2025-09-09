@@ -17,9 +17,9 @@ namespace BLL
         /// </summary>
 
         LibroDAL mapper = new();
+       
 
-
-        public void Agregar( LibroBE libroNuevo )
+        public void Agregar_Libro( LibroBE libroNuevo )
         {
             /// Levanta por bubujeo al llamador GUI
             if (libroNuevo == null)
@@ -33,11 +33,11 @@ namespace BLL
 
             }
         }
-        public void Eliminar_Libro()
+        public void Eliminar_Libro( string TITULO )
         {
             try
             {
-
+                mapper.Eliminar_Libro(TITULO);
             }
             catch 
             {
@@ -55,5 +55,18 @@ namespace BLL
 
             }
         }
+
+        public List<LibroBE> Obtener_Libro()
+        {
+            try
+            {
+                return mapper.Obtener_Libros();
+            }
+            catch ( Exception ex )
+            {
+                throw new ArgumentException( ex.Message );
+            }
+        }
+
     }
 }

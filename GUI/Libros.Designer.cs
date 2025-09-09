@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            Grilla_Libros = new DataGridView();
             label1 = new Label();
             BTN_Agregar = new Button();
             BTN_Modificar = new Button();
             BTN_Eliminar = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Grilla_Libros).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // Grilla_Libros
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(102, 67);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(561, 239);
-            dataGridView1.TabIndex = 0;
+            Grilla_Libros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Grilla_Libros.Location = new Point(102, 67);
+            Grilla_Libros.Name = "Grilla_Libros";
+            Grilla_Libros.Size = new Size(561, 222);
+            Grilla_Libros.TabIndex = 0;
             // 
             // label1
             // 
@@ -63,6 +63,7 @@
             BTN_Agregar.TabIndex = 3;
             BTN_Agregar.Text = "Agregar";
             BTN_Agregar.UseVisualStyleBackColor = true;
+            BTN_Agregar.Click += BTN_Agregar_Click;
             // 
             // BTN_Modificar
             // 
@@ -81,6 +82,7 @@
             BTN_Eliminar.TabIndex = 5;
             BTN_Eliminar.Text = "Eliminar";
             BTN_Eliminar.UseVisualStyleBackColor = true;
+            BTN_Eliminar.Click += BTN_Eliminar_Click;
             // 
             // Libros
             // 
@@ -91,17 +93,18 @@
             Controls.Add(BTN_Modificar);
             Controls.Add(BTN_Agregar);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
+            Controls.Add(Grilla_Libros);
             Name = "Libros";
             Text = "Libros";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += Libros_Load;
+            ((System.ComponentModel.ISupportInitialize)Grilla_Libros).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView Grilla_Libros;
         private Label label1;
         private Button BTN_Agregar;
         private Button BTN_Modificar;

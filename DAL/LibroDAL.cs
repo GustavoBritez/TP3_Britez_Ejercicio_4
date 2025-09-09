@@ -1,7 +1,9 @@
-﻿using BE;
+﻿using Azure.Messaging;
+using BE;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Text;
@@ -20,13 +22,54 @@ namespace DAL
                 throw new ArgumentNullException();
             try
             {
-                acceso.Escribir("ALTA_LIBRO",AYUDANTE.Param(libroNuevo));
-            }
-            catch
-            {
 
+                acceso.Escribir("ALTA_LIBROS", AYUDANTE.Param(libroNuevo));
+            }
+            catch (Exception ex )
+            {
+                throw new ArgumentException(" Error en LibroDAL ",ex.Message);
             }
         }
 
+        public List<LibroBE> Obtener_Libros( )
+        { 
+            try
+            {
+                DataTable tabla = acceso.Leer("OBTENER_LIBROS",null);
+                List<LibroBE> lista_Libros = new();
+
+                foreach( DataRow rows in tabla.Rows )
+                {
+                    LibroBE libroObtenido = new LibroBE
+                    {
+                        Autor = rows["AUTOR"] != DBNull.Value ? Convert.ToString(rows["AUTOR"]) : string.Empty,
+                        Titulo = rows["TITULO"] != DBNull.Value ? Convert.ToString(rows["TITULO"]) : string.Empty,
+                        Ejemplar = rows["EJEMPLAR"] != DBNull.Value ? Convert.ToInt32(rows["EJEMPLAR"]) : 0
+                    };
+                    lista_Libros.Add(libroObtenido);
+                }
+                return lista_Libros;
+            }
+            catch( Exception ex )
+            {
+                throw new ArgumentException(ex.Message);
+            }
+        }
+
+        public void Eliminar_Libro( string TITULO  )
+        {
+            try
+            {
+                SqlParameter[] sp = new SqlParameter[]
+                {
+                    new SqlParameter("@TITULO", TITULO )
+                };
+                acceso.Escribir("BAJA_LIBRO", sp);
+            }
+            catch( Exception ex )
+            {
+                throw new ArgumentException(ex.Message);
+            }
+        }
     }
 }
