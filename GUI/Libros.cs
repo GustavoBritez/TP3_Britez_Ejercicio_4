@@ -38,7 +38,6 @@ namespace GUI
                 {
                     LibroBE libroNuevo = new LibroBE
                     {
-
                         Autor = autor,
                         Titulo = titulo,
                         Ejemplar = number
@@ -81,9 +80,41 @@ namespace GUI
 
                 Actualizar();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BTN_Modificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Grilla_Libros.SelectedRows.Count < 0) throw new ArgumentException("Selecciona algo antes de eliminar");
+                string autor = Grilla_Libros.Rows[0].Cells["AUTOR"].Value.ToString();
+                string titulo = Grilla_Libros.Rows[0].Cells["TITULO"].Value.ToString();
+                string ejemplar = Grilla_Libros.Rows[0].Cells["EJEMPLAR"].Value.ToString();
+
+                MessageBox.Show($"MODIFICAR DATOS \n" +
+                    $"{autor}\n{titulo}\n{ejemplar}\n");
+
+                string autor1 = Interaction.InputBox("Ingrese nuevo autor");
+                string titulo1 = Interaction.InputBox("Ingrese nuevo titulo");
+                int ejemplar1 = Convert.ToInt32(Interaction.InputBox("Ingrese nuevo ejemplar"));
+                LibroBE newlibro = new();
+
+                newlibro.Autor = autor1;
+                newlibro.Titulo = titulo1;
+                newlibro.Ejemplar = ejemplar1;
+
+                LibroBLL logica_Libro = new();
+                logica_Libro.Modificar_Libro(titulo,newlibro);
+
+                Actualizar();
+            }
             catch( Exception ex )
             {
-                MessageBox.Show( ex.Message );
+                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -71,5 +71,27 @@ namespace DAL
                 throw new ArgumentException(ex.Message);
             }
         }
+
+        public void Modificar_Libro( string titulo, LibroBE libronuevo)
+        {
+            if (libronuevo is null)
+                throw new ArgumentException(" Error al modificar ( Desde DAL )");
+            try
+            {
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter("@BORRAR", titulo),
+                    new SqlParameter("@AUTOR", libronuevo.Autor),
+                    new SqlParameter("@TITULO", libronuevo.Titulo),
+                    new SqlParameter("@EJEMPLAR", libronuevo.Ejemplar)
+                };
+                
+                acceso.Escribir("MODIFICAR_LIBRO",param);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+        }
     }
 }

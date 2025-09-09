@@ -73,6 +73,7 @@
             BTN_Modificar.TabIndex = 4;
             BTN_Modificar.Text = "Modificar";
             BTN_Modificar.UseVisualStyleBackColor = true;
+            BTN_Modificar.Click += BTN_Modificar_Click;
             // 
             // BTN_Eliminar
             // 

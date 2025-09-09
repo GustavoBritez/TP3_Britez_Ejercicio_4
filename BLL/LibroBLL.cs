@@ -39,20 +39,20 @@ namespace BLL
             {
                 mapper.Eliminar_Libro(TITULO);
             }
-            catch 
+            catch (Exception ex)
             {
-
+                throw new Exception( ex.ToString() );   
             }
         }
-        public void Modificar_Libro()
+        public void Modificar_Libro(string titulo, LibroBE libroNuevo )
         {
             try
             {
-
+                mapper.Modificar_Libro(titulo, libroNuevo);
             }
-            catch 
+            catch (Exception ex )
             {
-
+                throw new ArgumentException( ex.Message );
             }
         }
 
