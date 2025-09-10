@@ -22,11 +22,11 @@ namespace BLL
                 throw new ArgumentException(ex.Message);
             }
         }
-        public void Devolver_Prestamo()
+        public void Devolver_Prestamo( int numeroPrestamo )
         {
             try
             {
-
+                mapper.Devolver_Prestamo(numeroPrestamo);
             }
             catch (Exception ex)
             {

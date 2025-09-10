@@ -134,6 +134,7 @@
             BTN_ELIMINAR.TabIndex = 11;
             BTN_ELIMINAR.Text = "Eliminar";
             BTN_ELIMINAR.UseVisualStyleBackColor = true;
+            BTN_ELIMINAR.Click += BTN_ELIMINAR_Click;
             // 
             // Prestamos
             // 

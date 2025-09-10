@@ -28,17 +28,18 @@ namespace DAL
                 DataTable datos_libro = access.Leer("OBTENER_TITULO",null);
                 DataTable datos_usuario = access.Leer("OBTENER_USUARIO_CON_MAIL", null);
 
-                SqlParameter[] PrestamoNuevo = new SqlParameter[]
+                SqlParameter[] prestamoNuevo = new SqlParameter[]
                 {
                     new SqlParameter("@AUTOR", datos_libro.Rows[0]["AUTOR"].ToString()),
                     new SqlParameter("@TITULO", datos_libro.Rows[0]["TITULO"].ToString()),
                     new SqlParameter("@EJEMPLAR", Convert.ToInt32(datos_libro.Rows[0]["EJEMPLAR"])),
                     new SqlParameter("@MAIL", datos_usuario.Rows[0]["MAIL"].ToString()),
+                    new SqlParameter("@NUMEROPRESTAMO", Convert.ToInt32(datos_libro)),
                     new SqlParameter("@FECHA_RETIRO", SqlDbType.Date),
                     new SqlParameter("@FECHA_DEVUELTA", SqlDbType.Date)
                 };
 
-                access.Escribir("CREAR_PRESTAMO",PrestamoNuevo);
+                access.Escribir("CREAR_PRESTAMO",prestamoNuevo);
 
             }
             catch
@@ -46,7 +47,7 @@ namespace DAL
 
             }
         }
-        public void Devolver_Prestamo()
+        public void Devolver_Prestamo( int numeroPrestamo )
         {
             try
             {

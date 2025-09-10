@@ -16,6 +16,7 @@ namespace GUI
         public Prestamos()
         {
             InitializeComponent();
+            Grilla_Prestamos.MultiSelect = false;
         }
 
         public void Actualizar()
@@ -37,6 +38,24 @@ namespace GUI
         private void Prestamos_Load(object sender, EventArgs e)
         {
             Actualizar();
+        }
+
+        private void BTN_ELIMINAR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PrestamoBLL logicaPrestamo = new();
+                if (Grilla_Prestamos.Rows.Count < 0) throw new ArgumentException("Seleccione una fila");
+                int NumeroPrestamo = Convert.ToInt32(Grilla_Prestamos.Rows[0].Cells["NUMERO_PRESTAMO"].Value);
+
+                logicaPrestamo.Devolver_Prestamo(NumeroPrestamo);
+
+                Actualizar();
+            }
+            catch( Exception ex )
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

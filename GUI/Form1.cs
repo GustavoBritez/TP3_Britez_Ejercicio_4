@@ -11,6 +11,13 @@ namespace GUI
             InitializeComponent();
         }
 
+        public void Actualizar()
+        {
+            UsuarioBLL logicaUsuario = new();
+            Grilla_Usuario.DataSource = null;
+            Grilla_Usuario.DataSource = logicaUsuario.Obtener_Usuarios();
+        }
+
         private void BTN_AGREGAR_Click(object sender, EventArgs e)
         {
             try
@@ -32,10 +39,7 @@ namespace GUI
 
                 logica_Usuario.Register(usuario);
 
-                Grilla_Usuario.DataSource = null;
-                Grilla_Usuario.DataSource = logica_Usuario.Obtener_Usuarios();
-
-
+                Actualizar();
             }
             catch (Exception ex)
             {
@@ -45,17 +49,21 @@ namespace GUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            UsuarioBLL logica_Usuario = new UsuarioBLL();
-
-            Grilla_Usuario.DataSource = null;
-            Grilla_Usuario.DataSource = logica_Usuario.Obtener_Usuarios();
+            Actualizar();
         }
 
         private void BTN_ELIMINAR_Click(object sender, EventArgs e)
         {
             try
             {
+                UsuarioBLL logicaUsuario = new UsuarioBLL();
 
+                if (Grilla_Usuario.Rows.Count < 0) throw new ArgumentException("Seleccione un prestamo");
+                
+                var numero_prestamo = Grilla_Usuario.Rows[0].Cells[""]
+                
+
+                Actualizar();
             }
             catch( Exception ex )
             {
