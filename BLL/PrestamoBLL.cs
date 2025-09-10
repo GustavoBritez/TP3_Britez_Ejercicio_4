@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BE;
+using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +10,39 @@ namespace BLL
 {
     public class PrestamoBLL
     {
-        public void Solicitar_Prestamo()
+        PrestamoDAL mapper = new();
+        public void Solicitar_Prestamo( string Titulo, string mail )
         {
-
+            try
+            {
+                mapper.Solicitar_Prestamo ( Titulo, mail );
+            }
+            catch ( Exception ex ) 
+            {
+                throw new ArgumentException(ex.Message);
+            }
         }
         public void Devolver_Prestamo()
         {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
         }
         public void Obtener_Prestamos()
         {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
         }
     }
 }
