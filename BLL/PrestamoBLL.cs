@@ -33,11 +33,11 @@ namespace BLL
                 throw new ArgumentException(ex.Message);
             }
         }
-        public void Obtener_Prestamos()
+        public List<PrestamoBE> Obtener_Prestamos()
         {
             try
             {
-
+                return mapper.Obtener_Prestamos();
             }
             catch (Exception ex)
             {

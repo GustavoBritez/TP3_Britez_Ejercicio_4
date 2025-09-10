@@ -50,5 +50,17 @@ namespace GUI
             Grilla_Usuario.DataSource = null;
             Grilla_Usuario.DataSource = logica_Usuario.Obtener_Usuarios();
         }
+
+        private void BTN_ELIMINAR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch( Exception ex )
+            {
+                MessageBox.Show( ex.Message );
+            }
+        }
     }
 }

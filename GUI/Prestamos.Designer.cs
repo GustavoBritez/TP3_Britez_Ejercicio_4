@@ -152,6 +152,7 @@
             Controls.Add(Grilla_Prestamos);
             Name = "Prestamos";
             Text = "Prestamos";
+            Load += Prestamos_Load;
             ((System.ComponentModel.ISupportInitialize)Grilla_Prestamos).EndInit();
             ResumeLayout(false);
             PerformLayout();

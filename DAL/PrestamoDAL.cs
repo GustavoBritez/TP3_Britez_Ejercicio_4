@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using BE;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -56,15 +57,37 @@ namespace DAL
 
             }
         }
-        public void Obtener_Prestamos()
+        public List<PrestamoBE> Obtener_Prestamos()
         {
             try
             {
+                List<PrestamoBE> lista_prestamos = new();
 
+                DataTable tabla_prestamos = access.Leer("OBTENER_PRESTAMOS",null);
+
+                if (tabla_prestamos is null || tabla_prestamos.Rows.Count == 0 )
+                    throw new ArgumentException(" No se encontraron prestamos");
+
+                foreach( DataRow linea in tabla_prestamos.Rows )
+                {
+                    PrestamoBE newPrestamo = new PrestamoBE
+                    {
+                        Autor = linea["AUTOR"].ToString(),
+                        Titulo = linea["TITULO"].ToString(),
+                        Ejemplar = Convert.ToInt32(linea["EJEMPLAR"]),
+                        Nombre = linea["NOMBRE"].ToString(),
+                        Mail = linea["MAIL"].ToString(),
+                        Fecha_Retiro = Convert.ToDateTime(linea["FECHA_RETIRO"]),
+                        Fecha_Devuelta = Convert.ToDateTime(linea["FECHA_DEVUELTA"])
+                    };
+                    lista_prestamos.Add(newPrestamo);
+                }
+
+                return lista_prestamos;
             }
-            catch
+            catch (Exception ex )
             {
-
+                throw new ArgumentException(ex.Message);
             }
         }
 

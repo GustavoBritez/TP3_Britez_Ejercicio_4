@@ -84,6 +84,7 @@
             BTN_ELIMINAR.TabIndex = 4;
             BTN_ELIMINAR.Text = "Eliminar";
             BTN_ELIMINAR.UseVisualStyleBackColor = true;
+            BTN_ELIMINAR.Click += BTN_ELIMINAR_Click;
             // 
             // Ultimos_Ingresados
             // 
