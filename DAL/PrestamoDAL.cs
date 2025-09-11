@@ -17,16 +17,16 @@ namespace DAL
         {
             try
             {
-                SqlParameter[] libro = new SqlParameter[] {
+                SqlParameter[] libro_titulo = new SqlParameter[] {
                     new SqlParameter("@TITULO", Titulo),
                 };
 
-                SqlParameter[] Usuario = new SqlParameter[] {
+                SqlParameter[] Usuario_mail = new SqlParameter[] {
                     new SqlParameter("@MAIL", mail),
                 };
 
-                DataTable datos_libro = access.Leer("OBTENER_TITULO", libro);
-                DataTable datos_usuario = access.Leer("OBTENER_USUARIO_CON_MAIL", Usuario);
+                DataTable datos_libro = access.Leer("OBTENER_TITULO", libro_titulo);
+                DataTable datos_usuario = access.Leer("OBTENER_USUARIO_CON_MAIL", Usuario_mail);
 
                 DateTime fechaRetiro = DateTime.Now;  
                 DateTime fechaDevuelta = DateTime.Now.AddDays(7);
