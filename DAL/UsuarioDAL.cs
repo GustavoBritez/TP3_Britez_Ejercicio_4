@@ -49,7 +49,7 @@ namespace DAL
 
                 if (resultado.Rows.Count == 0)
                     return false;
-                string guardado = resultado.Rows[0]["Contrasenia"].ToString();
+                string guardado = resultado.Rows[0]["CONTRASENIA"].ToString();
 
                 if (string.IsNullOrEmpty(guardado))
                     return false;
@@ -70,7 +70,7 @@ namespace DAL
                     new SqlParameter("@ID_USUARIO",id_usuario)   
                 };
 
-                mapper.Escribir("ELIMINAR_USUARIO",sp);
+                mapper.Escribir("BAJA_USUARIOS",sp);
 
             }
             catch( Exception ex )
