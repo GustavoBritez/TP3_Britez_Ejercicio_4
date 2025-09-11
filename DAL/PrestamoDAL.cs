@@ -22,11 +22,14 @@ namespace DAL
                 };
 
                 SqlParameter[] Usuario = new SqlParameter[] {
-                    new SqlParameter("@TITULO", Titulo),
+                    new SqlParameter("@MAIL", mail),
                 };
 
-                DataTable datos_libro = access.Leer("OBTENER_TITULO",null);
-                DataTable datos_usuario = access.Leer("OBTENER_USUARIO_CON_MAIL", null);
+                DataTable datos_libro = access.Leer("OBTENER_TITULO", libro);
+                DataTable datos_usuario = access.Leer("OBTENER_USUARIO_CON_MAIL", Usuario);
+
+                DateTime fechaRetiro = DateTime.Now;  
+                DateTime fechaDevuelta = DateTime.Now.AddDays(7);
 
                 SqlParameter[] prestamoNuevo = new SqlParameter[]
                 {
@@ -34,28 +37,32 @@ namespace DAL
                     new SqlParameter("@TITULO", datos_libro.Rows[0]["TITULO"].ToString()),
                     new SqlParameter("@EJEMPLAR", Convert.ToInt32(datos_libro.Rows[0]["EJEMPLAR"])),
                     new SqlParameter("@MAIL", datos_usuario.Rows[0]["MAIL"].ToString()),
-                    new SqlParameter("@NUMEROPRESTAMO", Convert.ToInt32(datos_libro)),
-                    new SqlParameter("@FECHA_RETIRO", SqlDbType.Date),
-                    new SqlParameter("@FECHA_DEVUELTA", SqlDbType.Date)
+                    new SqlParameter("@FECHA_RETIRO", fechaRetiro),
+                    new SqlParameter("@FECHA_DEVUELTA", fechaDevuelta)
                 };
 
                 access.Escribir("CREAR_PRESTAMO",prestamoNuevo);
-
             }
-            catch
+            catch (Exception ex )
             {
-
+                throw new ArgumentException($"Error en Solicitar Prestamo DAL \n Error \n {ex.Message}");
             }
         }
         public void Devolver_Prestamo( int numeroPrestamo )
         {
             try
             {
+                SqlParameter[] sp = new SqlParameter[]
+                {
+                    new SqlParameter("@NUMERO_PRESTAMO", numeroPrestamo)
+                };
+
+                access.Escribir("DEVOLVER_PRESTAMO",sp);
 
             }
-            catch
+            catch (Exception ex) 
             {
-
+                throw new ArgumentException($"Error en Devolver Prestamo DAL\n Error \n {ex.Message}");
             }
         }
         public List<PrestamoBE> Obtener_Prestamos()
@@ -78,19 +85,18 @@ namespace DAL
                         Ejemplar = Convert.ToInt32(linea["EJEMPLAR"]),
                         Nombre = linea["NOMBRE"].ToString(),
                         Mail = linea["MAIL"].ToString(),
+                        NumeroPrestamo = Convert.ToInt32(linea["NUMERO_PRESTAMO"]),
                         Fecha_Retiro = Convert.ToDateTime(linea["FECHA_RETIRO"]),
                         Fecha_Devuelta = Convert.ToDateTime(linea["FECHA_DEVUELTA"])
                     };
                     lista_prestamos.Add(newPrestamo);
                 }
-
                 return lista_prestamos;
             }
             catch (Exception ex )
             {
-                throw new ArgumentException(ex.Message);
+                throw new ArgumentException($"Error en Obtener Prestamo DAL \n Error \n {ex.Message}");
             }
         }
-
     }
 }
