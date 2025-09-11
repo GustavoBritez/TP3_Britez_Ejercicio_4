@@ -60,7 +60,7 @@ namespace GUI
 
                 if (Grilla_Usuario.Rows.Count < 0) throw new ArgumentException("Seleccione un usuario");
 
-                var idNumero = Grilla_Usuario.Rows[0].Cells["ID_USUARIO"].Value;
+                int idNumero = Convert.ToInt32(Grilla_Usuario.Rows[0].Cells["ID_USUARIO"].Value);
 
                 logicaUsuario.Eliminar(idNumero);
 

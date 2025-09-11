@@ -83,7 +83,12 @@ namespace GUI
             {
                 PrestamoBLL logicaPrestamo = new();
 
-                logicaPrestamo.Solicitar_Prestamo();
+                string titulo = LB_Libros.SelectedItem.ToString();
+                string mail = LB_Usuarios.SelectedItem.ToString();
+
+                logicaPrestamo.Solicitar_Prestamo(titulo, mail);
+
+                Actualizar();
             }
             catch( Exception ex )
             {

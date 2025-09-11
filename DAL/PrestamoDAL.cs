@@ -48,6 +48,7 @@ namespace DAL
                 throw new ArgumentException($"Error en Solicitar Prestamo DAL \n Error \n {ex.Message}");
             }
         }
+
         public void Devolver_Prestamo( int numeroPrestamo )
         {
             try
@@ -65,6 +66,7 @@ namespace DAL
                 throw new ArgumentException($"Error en Devolver Prestamo DAL\n Error \n {ex.Message}");
             }
         }
+
         public List<PrestamoBE> Obtener_Prestamos()
         {
             try
@@ -98,5 +100,6 @@ namespace DAL
                 throw new ArgumentException($"Error en Obtener Prestamo DAL \n Error \n {ex.Message}");
             }
         }
+
     }
 }

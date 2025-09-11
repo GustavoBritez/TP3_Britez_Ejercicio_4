@@ -15,7 +15,7 @@ namespace BLL
         {
             try
             {
-                mapper.Solicitar_Prestamo ( Titulo, mail );
+                mapper.Solicitar_Prestamo( Titulo, mail );
             }
             catch ( Exception ex ) 
             {
