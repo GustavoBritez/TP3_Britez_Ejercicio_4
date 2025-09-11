@@ -1,4 +1,5 @@
 ﻿using BLL;
+using BE;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,24 @@ namespace GUI
 
                 Grilla_Prestamos.DataSource = null;
                 Grilla_Prestamos.DataSource = logicaPrestamo.Obtener_Prestamos();
+
+                LibroBLL logicaLibro = new();
+
+                List<LibroBE> lista_libros = logicaLibro.Obtener_Libro();
+
+                foreach ( LibroBE libritos in lista_libros )
+                {
+                    LB_Libros.Items.Add( libritos.Titulo );
+                }
+
+                UsuarioBLL logicaUsuario = new();
+
+                List<UsuarioBE> lista_usuarios = logicaUsuario.Obtener_Usuarios();
+
+                foreach( UsuarioBE usuario in lista_usuarios )
+                {
+                    LB_Usuarios.Items.Add( usuario.Mail );
+                }
             }
             catch (Exception ex)
             {
@@ -52,9 +71,23 @@ namespace GUI
 
                 Actualizar();
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BTN_AGREGAR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PrestamoBLL logicaPrestamo = new();
+
+                logicaPrestamo.Solicitar_Prestamo();
+            }
+            catch( Exception ex )
+            {
+                MessageBox.Show($"Error en boton Agregar {ex.Message}");
             }
         }
     }

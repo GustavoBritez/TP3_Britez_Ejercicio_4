@@ -58,10 +58,11 @@ namespace GUI
             {
                 UsuarioBLL logicaUsuario = new UsuarioBLL();
 
-                if (Grilla_Usuario.Rows.Count < 0) throw new ArgumentException("Seleccione un prestamo");
-                
-                var numero_prestamo = Grilla_Usuario.Rows[0].Cells[""]
-                
+                if (Grilla_Usuario.Rows.Count < 0) throw new ArgumentException("Seleccione un usuario");
+
+                var idNumero = Grilla_Usuario.Rows[0].Cells["ID_USUARIO"].Value;
+
+                logicaUsuario.Eliminar(idNumero);
 
                 Actualizar();
             }

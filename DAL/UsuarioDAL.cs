@@ -61,6 +61,24 @@ namespace DAL
             }
         }
 
+        public void Eliminar( int id_usuario )
+        {
+            try
+            {
+                SqlParameter[]  sp = new SqlParameter[]
+                {
+                    new SqlParameter("@ID_USUARIO",id_usuario)   
+                };
+
+                mapper.Escribir("ELIMINAR_USUARIO",sp);
+
+            }
+            catch( Exception ex )
+            {
+                throw new ArgumentException(ex.Message);
+            }
+        }
+
         public List<UsuarioBE> Obtener_Usuarios()
         {
             try

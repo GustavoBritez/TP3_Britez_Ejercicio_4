@@ -22,6 +22,7 @@ namespace BLL
                 throw new ArgumentException(ex.Message);
             }
         }
+
         public void Devolver_Prestamo( int numeroPrestamo )
         {
             try
@@ -33,6 +34,7 @@ namespace BLL
                 throw new ArgumentException(ex.Message);
             }
         }
+
         public List<PrestamoBE> Obtener_Prestamos()
         {
             try

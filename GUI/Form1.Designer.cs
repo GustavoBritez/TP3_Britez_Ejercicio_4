@@ -109,7 +109,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(786, 327);
+            ClientSize = new Size(800, 333);
             Controls.Add(label2);
             Controls.Add(Ultimos_Ingresados);
             Controls.Add(BTN_ELIMINAR);
@@ -117,6 +117,7 @@
             Controls.Add(BTN_AGREGAR);
             Controls.Add(label1);
             Controls.Add(Grilla_Usuario);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;

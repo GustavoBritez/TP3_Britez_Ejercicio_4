@@ -89,12 +89,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(788, 391);
             Controls.Add(BTN_Eliminar);
             Controls.Add(BTN_Modificar);
             Controls.Add(BTN_Agregar);
             Controls.Add(label1);
             Controls.Add(Grilla_Libros);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Libros";
             Text = "Libros";
             Load += Libros_Load;

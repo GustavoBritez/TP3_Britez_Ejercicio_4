@@ -13,7 +13,7 @@ namespace BLL
 {
     public class UsuarioBLL
     {
-        UsuarioDAL DAL_INTERACTION;
+        UsuarioDAL DAL_INTERACTION = new();
         public UsuarioBLL()
         {
             DAL_INTERACTION= new UsuarioDAL();  
@@ -36,6 +36,29 @@ namespace BLL
             }
         }
 
+        public void Login( string usuario, string contrasenia )
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($"{ex.Message}");
+            }
+        }
+
+        public void Eliminar( int idNumero )
+        {
+            try
+            {
+                DAL_INTERACTION.Eliminar(idNumero);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($"Error en Eliminar UsuarioBLL \n  {ex.Message}");
+            }
+        }
         public List<UsuarioBE> Obtener_Usuarios()
         {
             try
@@ -52,17 +75,7 @@ namespace BLL
             }
         }
 
-        public void Login( string usuario, string contrasenia )
-        {
-            try
-            {
 
-            }
-            catch
-            {
-
-            }
-        }
 
     }
 }

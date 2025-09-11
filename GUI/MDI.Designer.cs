@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             menuStrip1 = new MenuStrip();
-            panel1 = new Panel();
             usuariosToolStripMenuItem = new ToolStripMenuItem();
             librosToolStripMenuItem = new ToolStripMenuItem();
             prestamosToolStripMenuItem = new ToolStripMenuItem();
+            panel1 = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,6 +45,27 @@
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
+            // usuariosToolStripMenuItem
+            // 
+            usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            usuariosToolStripMenuItem.Size = new Size(64, 20);
+            usuariosToolStripMenuItem.Text = "Usuarios";
+            usuariosToolStripMenuItem.Click += usuariosToolStripMenuItem_Click;
+            // 
+            // librosToolStripMenuItem
+            // 
+            librosToolStripMenuItem.Name = "librosToolStripMenuItem";
+            librosToolStripMenuItem.Size = new Size(51, 20);
+            librosToolStripMenuItem.Text = "Libros";
+            librosToolStripMenuItem.Click += librosToolStripMenuItem_Click;
+            // 
+            // prestamosToolStripMenuItem
+            // 
+            prestamosToolStripMenuItem.Name = "prestamosToolStripMenuItem";
+            prestamosToolStripMenuItem.Size = new Size(74, 20);
+            prestamosToolStripMenuItem.Text = "Prestamos";
+            prestamosToolStripMenuItem.Click += prestamosToolStripMenuItem_Click;
+            // 
             // panel1
             // 
             panel1.Dock = DockStyle.Fill;
@@ -52,24 +73,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 426);
             panel1.TabIndex = 2;
-            // 
-            // usuariosToolStripMenuItem
-            // 
-            usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            usuariosToolStripMenuItem.Size = new Size(64, 20);
-            usuariosToolStripMenuItem.Text = "Usuarios";
-            // 
-            // librosToolStripMenuItem
-            // 
-            librosToolStripMenuItem.Name = "librosToolStripMenuItem";
-            librosToolStripMenuItem.Size = new Size(51, 20);
-            librosToolStripMenuItem.Text = "Libros";
-            // 
-            // prestamosToolStripMenuItem
-            // 
-            prestamosToolStripMenuItem.Name = "prestamosToolStripMenuItem";
-            prestamosToolStripMenuItem.Size = new Size(74, 20);
-            prestamosToolStripMenuItem.Text = "Prestamos";
             // 
             // MDI
             // 

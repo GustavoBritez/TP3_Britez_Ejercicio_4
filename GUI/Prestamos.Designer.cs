@@ -116,6 +116,7 @@
             BTN_AGREGAR.TabIndex = 9;
             BTN_AGREGAR.Text = "Agregar";
             BTN_AGREGAR.UseVisualStyleBackColor = true;
+            BTN_AGREGAR.Click += BTN_AGREGAR_Click;
             // 
             // BTN_MODIFICAR
             // 
@@ -140,7 +141,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(790, 396);
             Controls.Add(BTN_ELIMINAR);
             Controls.Add(BTN_MODIFICAR);
             Controls.Add(BTN_AGREGAR);
@@ -151,6 +152,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(Grilla_Prestamos);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Prestamos";
             Text = "Prestamos";
             Load += Prestamos_Load;
