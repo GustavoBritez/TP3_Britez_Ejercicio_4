@@ -26,6 +26,9 @@ namespace GUI
             {
                 PrestamoBLL logicaPrestamo = new();
 
+
+                LB_Libros.Items.Clear();
+                LB_Usuarios.Items.Clear(); 
                 Grilla_Prestamos.DataSource = null;
                 Grilla_Prestamos.DataSource = logicaPrestamo.Obtener_Prestamos();
 
@@ -65,7 +68,7 @@ namespace GUI
             {
                 PrestamoBLL logicaPrestamo = new();
                 if (Grilla_Prestamos.Rows.Count < 0) throw new ArgumentException("Seleccione una fila");
-                int NumeroPrestamo = Convert.ToInt32(Grilla_Prestamos.Rows[0].Cells["NUMERO_PRESTAMO"].Value);
+                int NumeroPrestamo = Convert.ToInt32(Grilla_Prestamos.Rows[0].Cells["NumeroPrestamo"].Value);
 
                 logicaPrestamo.Devolver_Prestamo(NumeroPrestamo);
 

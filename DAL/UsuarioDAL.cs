@@ -106,5 +106,8 @@ namespace DAL
                 throw new ArgumentException(" Error al obtener usuarios en la DAL ");
             }
         }
+
+    
+
     }
 }

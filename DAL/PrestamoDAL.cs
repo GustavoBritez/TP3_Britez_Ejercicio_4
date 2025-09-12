@@ -18,25 +18,23 @@ namespace DAL
             try
             {
                 SqlParameter[] libro_titulo = new SqlParameter[] {
-                    new SqlParameter("@TITULO", Titulo),
+                    new SqlParameter("@TITULO", SqlDbType.VarChar,100) {Value = Titulo},
                 };
 
                 SqlParameter[] Usuario_mail = new SqlParameter[] {
-                    new SqlParameter("@MAIL", mail),
+                    new SqlParameter("@MAIL", SqlDbType.VarChar,100) {Value = mail},
                 };
-
-                DataTable datos_libro = access.Leer("OBTENER_TITULO", libro_titulo);
-                DataTable datos_usuario = access.Leer("OBTENER_USUARIO_CON_MAIL", Usuario_mail);
 
                 DateTime fechaRetiro = DateTime.Now;  
                 DateTime fechaDevuelta = DateTime.Now.AddDays(7);
 
+                DataTable libro = access.Leer("OBTENER_TITULO",libro_titulo);
+                DataTable usuario = access.Leer("OBTENER_USUARIO_CON_MAIL", Usuario_mail);
+
                 SqlParameter[] prestamoNuevo = new SqlParameter[]
                 {
-                    new SqlParameter("@AUTOR", datos_libro.Rows[0]["AUTOR"].ToString()),
-                    new SqlParameter("@TITULO", datos_libro.Rows[0]["TITULO"].ToString()),
-                    new SqlParameter("@EJEMPLAR", Convert.ToInt32(datos_libro.Rows[0]["EJEMPLAR"])),
-                    new SqlParameter("@MAIL", datos_usuario.Rows[0]["MAIL"].ToString()),
+                    new SqlParameter("@TITULO", SqlDbType.VarChar,100) {Value = libro.Rows[0]["TITULO"]},
+                    new SqlParameter("@ID_USUARIO", SqlDbType.Int) { Value = Convert.ToInt32(usuario.Rows[0]["ID_USUARIOS"]) },
                     new SqlParameter("@FECHA_RETIRO", fechaRetiro),
                     new SqlParameter("@FECHA_DEVUELTA", fechaDevuelta)
                 };
@@ -75,19 +73,13 @@ namespace DAL
 
                 DataTable tabla_prestamos = access.Leer("OBTENER_PRESTAMOS",null);
 
-                if (tabla_prestamos is null || tabla_prestamos.Rows.Count == 0 )
-                    throw new ArgumentException(" No se encontraron prestamos");
-
                 foreach( DataRow linea in tabla_prestamos.Rows )
                 {
                     PrestamoBE newPrestamo = new PrestamoBE
                     {
-                        Autor = linea["AUTOR"].ToString(),
-                        Titulo = linea["TITULO"].ToString(),
-                        Ejemplar = Convert.ToInt32(linea["EJEMPLAR"]),
-                        Nombre = linea["NOMBRE"].ToString(),
-                        Mail = linea["MAIL"].ToString(),
-                        NumeroPrestamo = Convert.ToInt32(linea["NUMERO_PRESTAMO"]),
+                        NumeroPrestamo = Convert.ToInt32(linea["ID_PRESTAMO"]),
+                        IdUsuario = Convert.ToInt32(linea["ID_USUARIOS"]),
+                        Titulo = Convert.ToString(linea["TITULO"]),
                         Fecha_Retiro = Convert.ToDateTime(linea["FECHA_RETIRO"]),
                         Fecha_Devuelta = Convert.ToDateTime(linea["FECHA_DEVUELTA"])
                     };
